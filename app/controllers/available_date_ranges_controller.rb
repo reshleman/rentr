@@ -5,10 +5,12 @@ class AvailableDateRangesController < ApplicationController
   end
 
   def create
-    available_date_range = AvailableDateRange.new(available_date_range_params)
-    available_date_range.listing = find_listing
-    available_date_range.save
-    redirect_to available_date_range.listing
+    listing = find_listing
+    if listing.add_available_date_range(available_date_range_params)
+      redirect_to listing
+    else
+      render :new
+    end
   end
 
   private

@@ -8,9 +8,7 @@
 
 <p>$<%= @listing.price %> per night.</p>
 
-<% @listing.available_date_ranges.each do |range| %>
-  <p><%= range.start_date.to_formatted_s(:long_ordinal) %> to <%= range.end_date.to_formatted_s(:long_ordinal) %></p>
-<% end %>
+<%= render @listing.available_date_ranges %>
 
 <p>
   <%= @listing.address %><br>
