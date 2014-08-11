@@ -15,5 +15,5 @@ Rails.application.routes.draw do
 
   resources :listings, only: [:new, :create, :show]
 
-  get :search, to: "search_results#show"
+  get "search" => "search_results#show"
 end
