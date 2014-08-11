@@ -6,4 +6,5 @@ class Listing < ActiveRecord::Base
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :title, presence: true
   validates :user, presence: true
+  validates :accommodates, presence: true, numericality: { greater_than: 0 }
 end

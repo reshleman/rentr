@@ -4,6 +4,8 @@
 
 <p>$<%= @listing.price %> per night.</p>
 
+<p>This listing accommodates <%= pluralize @listing.accommodates, "person" %>.</p>
+
 <p>
   <%= @listing.address %><br>
   <%= @listing.city %>
