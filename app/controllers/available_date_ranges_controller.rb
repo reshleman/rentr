@@ -6,10 +6,12 @@ class AvailableDateRangesController < ApplicationController
 
   def create
     listing = find_listing
+
     if listing.add_available_date_range(available_date_range_params)
       redirect_to listing
     else
-      render :new
+      flash[:error] = "Invalid date range"
+      redirect_to listing
     end
   end
 

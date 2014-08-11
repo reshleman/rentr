@@ -8,7 +8,8 @@ class Listing < ActiveRecord::Base
   validates :title, presence: true
   validates :user, presence: true
 
-  def add_available_date_range(start_date, end_date)
-    available_date_ranges.create(start_date: start_date, end_date: end_date)
+  def add_available_date_range(dates)
+    range = available_date_ranges.new(dates)
+    range.save
   end
 end
