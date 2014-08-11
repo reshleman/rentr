@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   skip_before_action :require_login, only: [:show]
+  helper DateHelpers
 
   def show
     @listing = Listing.find(params[:id])

@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create]
 
-  resources :listings, only: [:new, :create, :show]
-
   get "search" => "search_results#show"
+
+  resources :listings, only: [:new, :create, :show] do
+    resources :availabilities, only: [:new, :create]
+  end
 end

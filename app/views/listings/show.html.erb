@@ -1,10 +1,16 @@
 <h2><%= @listing.title %></h2>
 
+<% if current_user.owns?(@listing) %>
+  <%= link_to "Add Availability", new_listing_availability_path(@listing) %>
+<% end %>
+
 <p><%= @listing.description %></p>
 
 <p>$<%= @listing.price %> per night.</p>
 
 <p>This listing accommodates <%= pluralize @listing.accommodates, "person" %>.</p>
+
+<%= render @listing.available_date_ranges %>
 
 <p>
   <%= @listing.address %><br>
