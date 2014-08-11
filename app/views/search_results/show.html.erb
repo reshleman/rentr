@@ -1,0 +1,5 @@
+<%= render "search_form" %>
+
+<% unless @query.blank? %>
+  <%= render "search_result" %>
+<% end %>
