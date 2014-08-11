@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
 
   resources :listings, only: [:new, :create, :show]
+
+  get "search" => "search_results#show"
 end

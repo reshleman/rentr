@@ -7,4 +7,8 @@ class Listing < ActiveRecord::Base
   validates :title, presence: true
   validates :user, presence: true
   validates :accommodates, presence: true, numericality: { greater_than: 0 }
+
+  def self.search(query)
+    where("city ILIKE ?", "%#{query}%")
+  end
 end
