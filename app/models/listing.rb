@@ -8,7 +8,11 @@ class Listing < ActiveRecord::Base
   validates :user, presence: true
   validates :accommodates, presence: true, numericality: { greater_than: 0 }
 
-  def self.search(query)
-    where("city ILIKE ?", "%#{query}%")
+  def self.search(query = "", price)
+    if price.blank?
+      price = 99999
+    end
+    where("city ILIKE ?", "%#{query}%").
+    where("price <= ?", price)
   end
 end

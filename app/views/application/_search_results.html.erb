@@ -1,7 +1,7 @@
-<h2>Search Results for: <%= @query %></h2>
+<h2>Search Results for: <%= @query %> <%= @price %></h2>
 
 <ul>
   <% @listings.each do |listing| %>
-    <li><%= link_to listing.title, listing %></li>
+    <li><%= link_to listing.title, listing %> <%= link_to listing.price, listing %></li>
   <% end %>
 </ul>

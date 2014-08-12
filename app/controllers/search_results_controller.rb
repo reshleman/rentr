@@ -3,6 +3,7 @@ class SearchResultsController < ApplicationController
 
   def show
     @query = params[:query]
-    @listings = Listing.search(@query)
+    @price = params[:price]
+    @listings = Listing.search(@query, @price)
   end
 end
