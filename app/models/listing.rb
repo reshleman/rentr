@@ -11,6 +11,7 @@ class Listing < ActiveRecord::Base
 
   def self.search(query)
     where("city ILIKE ?", "%#{query}%")
+  end
 
   def make_available_during(dates)
     range = available_date_ranges.new(dates)
