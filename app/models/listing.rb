@@ -14,7 +14,6 @@ class Listing < ActiveRecord::Base
   end
 
   def make_available_on(date)
-    range = available_dates.new(date)
-    range.save
+    available_dates.new(date).save
   end
 end

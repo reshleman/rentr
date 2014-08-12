@@ -1,4 +1,4 @@
-<%= form_for [@listing, @available_date], url:listing_availabilities_path(@listing)  do |form| %>
+<%= form_for [@listing, @available_date], url: listing_availabilities_path(@listing) do |form| %>
   <div>
     <%= form.label :date %>
     <%= form.date_field :date %>
