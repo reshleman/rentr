@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: true
 
   def owns?(listing)
-    listings.include?(listing)
+    listing.user_id == id
   end
 end
