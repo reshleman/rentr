@@ -1,7 +1,7 @@
 <h2><%= @listing.title %></h2>
 
 <% if current_user.owns?(@listing) %>
-  <%= link_to "Add Availability", new_listing_available_date_range_path(@listing) %>
+  <%= link_to "Add Availability", new_listing_availability_path(@listing) %>
 <% end %>
 
 <p><%= @listing.description %></p>

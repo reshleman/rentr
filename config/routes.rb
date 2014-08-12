@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
 
   resources :listings, only: [:new, :create, :show] do
-    resources :available_date_ranges, only: [:new, :create]
+    resources :availabilities, only: [:new, :create]
   end
 end

@@ -8,7 +8,7 @@ class Listing < ActiveRecord::Base
   validates :title, presence: true
   validates :user, presence: true
 
-  def add_available_date_range(dates)
+  def make_available_during(dates)
     range = available_date_ranges.new(dates)
     range.save
   end
