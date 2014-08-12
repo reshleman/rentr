@@ -10,8 +10,14 @@ class Listing < ActiveRecord::Base
   validates :user, presence: true
   validates :accommodates, presence: true, numericality: { greater_than: 0 }
 
-  def self.search(query)
-    where("city ILIKE ?", "%#{query}%")
+  def self.search(search_params)
+    result_set = where("city ILIKE ?", "%#{search_params[:city]}%")
+
+    if search_params[:price].present?
+      result_set = result_set.where("price <= ?", search_params[:price])
+    end
+
+    result_set
   end
 
   def make_available_on(date)
