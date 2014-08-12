@@ -10,9 +10,9 @@
 
 <p>This listing accommodates <%= pluralize @listing.accommodates, "person" %>.</p>
 
-<%= render @listing.available_date_ranges %>
-
 <p>
   <%= @listing.address %><br>
   <%= @listing.city %>
 </p>
+
+<%= render @listing.available_dates %>
