@@ -1,6 +1,6 @@
 class Listing < ActiveRecord::Base
   belongs_to :user
-  has_many :available_date_ranges
+  has_many :available_dates
 
   validates :city, presence: true
   validates :address, presence: true
@@ -13,8 +13,7 @@ class Listing < ActiveRecord::Base
     where("city ILIKE ?", "%#{query}%")
   end
 
-  def make_available_during(dates)
-    range = available_date_ranges.new(dates)
-    range.save
+  def make_available_on(date)
+    available_dates.new(date).save
   end
 end

@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'monban', '~> 0.1.1'
+gem 'date_validator', '~> 0.7.0'
 
 group :developement do
   gem 'spring'
