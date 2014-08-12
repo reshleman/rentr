@@ -1,5 +1,5 @@
 class GuestUser
-  def owns?(listing)
+  def owns?(_listing)
     false
   end
 end
