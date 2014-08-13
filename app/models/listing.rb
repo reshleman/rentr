@@ -48,7 +48,7 @@ class Listing < ActiveRecord::Base
 
   def make_unavailable_from(start_date, end_date)
     available_dates.
-      where("date BETWEEN ? AND ?", start_date.to_date, end_date.to_date-1).
+      where("date BETWEEN ? AND ?", start_date.to_date, end_date.to_date - 1).
       destroy_all
   end
 
@@ -62,7 +62,7 @@ class Listing < ActiveRecord::Base
 
   def count_available_dates_between(start_date, end_date)
     available_dates.
-      where("date BETWEEN ? AND ?", start_date.to_date, end_date.to_date-1).
+      where("date BETWEEN ? AND ?", start_date.to_date, end_date.to_date - 1).
       count
   end
 end
