@@ -1,8 +1,9 @@
 class Listing < ActiveRecord::Base
-  belongs_to :user
   has_many :available_dates
+  has_many :photos
   belongs_to :property_category
   belongs_to :room_category
+  belongs_to :user
 
   validates :city, presence: true
   validates :address, presence: true

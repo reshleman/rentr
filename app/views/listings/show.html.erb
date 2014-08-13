@@ -2,15 +2,20 @@
 
 <% if current_user.owns?(@listing) %>
   <%= link_to "Add Availability", new_listing_availability_path(@listing) %>
+  <%= link_to "Add Photo", new_listing_photo_path(@listing) %>
 <% end %>
 
 <p>Property Category: <%= @listing.property_category %></p>
 
 <p>Room Category: <%= @listing.room_category %></p>
 
+<div>
+  <%= render @listing.photos %>
+</div>
+
 <p><%= @listing.description %></p>
 
-<p>$<%= @listing.price %> per night.</p>
+<p><%= number_to_currency(@listing.price, precision: 0) %> per night.</p>
 
 <p>This listing accommodates <%= pluralize @listing.accommodates, "person" %>.</p>
 
