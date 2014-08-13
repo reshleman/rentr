@@ -11,20 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811195444) do
+ActiveRecord::Schema.define(version: 20140813152651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "available_date_ranges", force: true do |t|
+  create_table "available_dates", force: true do |t|
     t.integer  "listing_id", null: false
-    t.date     "start_date", null: false
-    t.date     "end_date",   null: false
+    t.date     "date",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "available_date_ranges", ["listing_id"], name: "index_available_date_ranges_on_listing_id", using: :btree
+  add_index "available_dates", ["listing_id"], name: "index_available_dates_on_listing_id", using: :btree
 
   create_table "listings", force: true do |t|
     t.string   "city"
@@ -35,7 +34,14 @@ ActiveRecord::Schema.define(version: 20140811195444) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "accommodates", default: 1
+    t.integer  "accommodates",     default: 1
+    t.integer  "property_type_id"
+  end
+
+  create_table "property_types", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

@@ -5,3 +5,34 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+DEFAULT_PROPERTY_TYPES = [
+  "Apartment",
+  "House",
+  "Bed & Breakfast",
+  "Loft",
+  "Cabin",
+  "Villa",
+  "Castle",
+  "Dorm",
+  "Treehouse",
+  "Boat",
+  "Plane",
+  "Camper/RV",
+  "Igloo",
+  "Lighthouse",
+  "Yurt",
+  "Tipi",
+  "Cave",
+  "Island",
+  "Chalet",
+  "Earth House",
+  "Hut",
+  "Train",
+  "Tent",
+  "Other"
+]
+
+DEFAULT_PROPERTY_TYPES.each do |type|
+  PropertyType.create(name: type)
+end
