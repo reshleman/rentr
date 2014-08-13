@@ -4,6 +4,8 @@
   <%= link_to "Add Availability", new_listing_availability_path(@listing) %>
 <% end %>
 
+<p>Property Type: <%= @listing.property_type %></p>
+
 <p><%= @listing.description %></p>
 
 <p>$<%= @listing.price %> per night.</p>

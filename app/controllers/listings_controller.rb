@@ -25,6 +25,6 @@ class ListingsController < ApplicationController
   def listing_params
     params.
       require(:listing).
-      permit(:city, :address, :price, :title, :description, :accommodates)
+      permit(:city, :address, :price, :title, :description, :accommodates, :property_type_id)
   end
 end
