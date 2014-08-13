@@ -8,11 +8,13 @@ class Listing < ActiveRecord::Base
   validates :user, presence: true
   validates :accommodates, presence: true, numericality: { greater_than: 0 }
 
-  def self.search(query = "", price)
-    if price.blank?
-      price = 99999
+  def self.search(search_params)
+    result_set = where("city ILIKE ?", "%#{search_params[:city]}%")
+
+    unless search_params[:price].blank?
+      result_set = result_set.where("price <= ?", search_params[:price])
     end
-    where("city ILIKE ?", "%#{query}%").
-    where("price <= ?", price)
+
+    result_set
   end
 end
