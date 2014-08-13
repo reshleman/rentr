@@ -3,7 +3,7 @@
 <%= form_for @listing do |form| %>
   <div>
     <%= form.label :property_type %>
-    <%= form.collection_select(:property_type_id, PropertyType.all, :id, :name) %>
+    <%= form.collection_select(:property_type_id, @property_types, :id, :name) %>
   </div>
   <div>
     <%= form.label :title %>
