@@ -2,8 +2,8 @@
 
 <%= form_for @listing do |form| %>
   <div>
-    <%= form.label :property_type %>
-    <%= form.collection_select(:property_type_id, @property_types, :id, :name) %>
+    <%= form.label :property_category %>
+    <%= form.collection_select(:property_category_id, @property_categories, :id, :name) %>
   </div>
   <div>
     <%= form.label :title %>

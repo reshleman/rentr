@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-DEFAULT_PROPERTY_TYPES = [
+DEFAULT_PROPERTY_CATEGORIES = [
   "Apartment",
   "House",
   "Bed & Breakfast",
@@ -33,6 +33,6 @@ DEFAULT_PROPERTY_TYPES = [
   "Other"
 ]
 
-DEFAULT_PROPERTY_TYPES.each do |type|
-  PropertyType.create(name: type)
+DEFAULT_PROPERTY_CATEGORIES.each do |category|
+  PropertyCategory.create(name: category)
 end
