@@ -9,6 +9,7 @@ class ListingsController < ApplicationController
   def new
     @listing = Listing.new
     @property_categories = PropertyCategory.all
+    @room_categories = RoomCategory.all
   end
 
   def create
@@ -33,7 +34,8 @@ class ListingsController < ApplicationController
         :title,
         :description,
         :accommodates,
-        :property_category_id
+        :property_category_id,
+        :room_category_id
       )
   end
 end
