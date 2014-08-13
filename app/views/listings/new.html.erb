@@ -6,6 +6,10 @@
     <%= form.collection_select(:property_category_id, @property_categories, :id, :name) %>
   </div>
   <div>
+    <%= form.label :room_category %>
+    <%= form.collection_select(:room_category_id, @room_categories, :id, :name) %>
+  </div>
+  <div>
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
