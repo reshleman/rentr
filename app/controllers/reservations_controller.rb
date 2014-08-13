@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   helper DateHelpers
+
   def new
     @listing = find_listing
     @reservation = Reservation.new
@@ -7,8 +8,9 @@ class ReservationsController < ApplicationController
 
   def create
     listing = find_listing
-    reservation = current_user.reserves(listing, reservation_params)
-    if reservation.save
+    reservation = listing.reserve(current_user, reservation_params)
+
+    if reservation
       redirect_to [listing, reservation]
     else
       redirect_to listing, alert: "Invalid date range."

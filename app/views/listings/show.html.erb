@@ -4,7 +4,7 @@
   <%= link_to "Add Availability", new_listing_availability_path(@listing) %>
 <% end %>
 
-<% if current_user.does_not_own?(@listing) %>
+<% unless current_user.owns?(@listing) %>
   <%= link_to "Reserve Listing", new_listing_reservation_path(@listing) %>
 <% end %>
 

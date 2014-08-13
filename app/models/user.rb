@@ -17,17 +17,7 @@ class User < ActiveRecord::Base
     reserved_listings.include?(listing)
   end
 
-  def reserves(listing, reservation_dates)
-    reservations.new(listing: listing,
-                     start_date: reservation_dates[:start_date],
-                     end_date: reservation_dates[:end_date])
-  end
-
   def owns?(listing)
     listing.user_id == id
-  end
-
-  def does_not_own?(listing)
-    !owns?(listing)
   end
 end
