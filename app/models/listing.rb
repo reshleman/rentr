@@ -4,6 +4,7 @@ class Listing < ActiveRecord::Base
   belongs_to :property_category
   belongs_to :room_category
   belongs_to :user
+  has_many :reservations
 
   validates :city, presence: true
   validates :address, presence: true
@@ -35,5 +36,55 @@ class Listing < ActiveRecord::Base
 
   def make_available_on(date)
     available_dates.new(date).save
+  end
+
+  def reserve(user, date_range)
+    if available_during?(date_range)
+      book(user, date_range)
+    else
+      NullReservation.new
+    end
+  end
+
+  private
+
+  def available_during?(date_range)
+    count_dates_between(date_range) ==
+      count_available_dates_between(date_range)
+  end
+
+  def book(user, date_range)
+    transaction do
+      book_during(date_range)
+      create_reservation(user, date_range)
+    end
+  end
+
+  def book_during(date_range)
+    available_date_range(date_range).destroy_all
+  end
+
+  def create_reservation(user, date_range)
+    reservations.create(
+      user: user,
+      start_date: date_range.start_date,
+      end_date: date_range.end_date
+    )
+  end
+
+  def count_dates_between(date_range)
+    date_range.count
+  end
+
+  def count_available_dates_between(date_range)
+    available_date_range(date_range).count
+  end
+
+  def available_date_range(date_range)
+    available_dates.where(
+      "date BETWEEN ? AND ?",
+      date_range.start_date,
+      date_range.end_date - 1
+    )
   end
 end

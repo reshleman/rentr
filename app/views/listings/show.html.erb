@@ -13,6 +13,10 @@
   <%= render @listing.photos %>
 </div>
 
+<% unless current_user.owns?(@listing) %>
+  <%= link_to "Reserve Listing", new_listing_reservation_path(@listing) %>
+<% end %>
+
 <p><%= @listing.description %></p>
 
 <p><%= number_to_currency(@listing.price, precision: 0) %> per night.</p>
@@ -24,4 +28,10 @@
   <%= @listing.city %>
 </p>
 
+<% if current_user.reserved?(@listing) %>
+  <p>Your Reservations</p>
+  <%= render current_user.reservations_for(@listing) %>
+<% end %>
+
+<p>Available Dates:</p>
 <%= render @listing.available_dates %>

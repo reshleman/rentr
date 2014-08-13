@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(version: 20140813223504) do
     t.datetime "updated_at"
   end
 
+  create_table "reservations", force: true do |t|
+    t.integer  "listing_id", null: false
+    t.integer  "user_id",    null: false
+    t.date     "start_date", null: false
+    t.date     "end_date",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reservations", ["listing_id"], name: "index_reservations_on_listing_id", using: :btree
+  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
+
   create_table "room_categories", force: true do |t|
     t.string   "name",       null: false
     t.datetime "created_at"

@@ -1,0 +1,5 @@
+<%= link_to @reservation.listing.title, @reservation.listing %>
+<p>
+  <%= format_date(@reservation.start_date) %> to
+  <%= format_date(@reservation.end_date) %>
+</p>
