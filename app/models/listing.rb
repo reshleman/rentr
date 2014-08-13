@@ -25,8 +25,8 @@ class Listing < ActiveRecord::Base
     transaction do
       if available?(start_date, end_date)
         reservation << reservations.create(user: user,
-                            start_date: start_date,
-                            end_date: end_date)
+                                           start_date: start_date,
+                                           end_date: end_date)
         make_unavailable_on(start_date, end_date)
       end
     end
