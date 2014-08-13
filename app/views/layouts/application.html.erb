@@ -12,6 +12,9 @@
   <%= link_to "Home", root_path %>
   <%= link_to "Search", search_path %>
   <% if signed_in? %>
+    <% if !current_page?(controller: "reservations", action: "index") %>
+      <%= link_to "Your Reservations", reservations_path %>
+    <% end %>
     <%= link_to "Sign out", session_path, method: :delete %>
   <% else %>
     <%= link_to "Sign in", new_session_path %>

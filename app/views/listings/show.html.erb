@@ -4,6 +4,10 @@
   <%= link_to "Add Availability", new_listing_availability_path(@listing) %>
 <% end %>
 
+<% if current_user.does_not_own?(@listing) %>
+  <%= link_to "Reserve Listing", new_listing_reservation_path(@listing) %>
+<% end %>
+
 <p><%= @listing.description %></p>
 
 <p>$<%= @listing.price %> per night.</p>
@@ -15,4 +19,10 @@
   <%= @listing.city %>
 </p>
 
+<% if current_user.reserved?(@listing) %>
+  <p>Your Reservations</p>
+  <%= render current_user.reservations_for(@listing) %>
+<% end %>
+
+<p>Available Dates:</p>
 <%= render @listing.available_dates %>
