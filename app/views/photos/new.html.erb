@@ -1,0 +1,6 @@
+<%= form_for [@listing, @photo], html: { multipart: true } do |form| %>
+  <div>
+    <%= form.file_field :image %>
+  </div>
+  <%= form.submit %>
+<% end %>

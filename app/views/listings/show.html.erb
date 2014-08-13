@@ -2,7 +2,12 @@
 
 <% if current_user.owns?(@listing) %>
   <%= link_to "Add Availability", new_listing_availability_path(@listing) %>
+  <%= link_to "Add Photo", new_listing_photo_path(@listing) %>
 <% end %>
+
+<div>
+  <%= render @listing.photos %>
+</div>
 
 <p><%= @listing.description %></p>
 
