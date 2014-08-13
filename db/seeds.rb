@@ -33,6 +33,16 @@ DEFAULT_PROPERTY_CATEGORIES = [
   "Other"
 ]
 
+DEFAULT_ROOM_CATEGORIES = [
+  "Entire Home/Apartment",
+  "Private Room",
+  "Shared Room"
+]
+
 DEFAULT_PROPERTY_CATEGORIES.each do |category|
   PropertyCategory.create(name: category)
+end
+
+DEFAULT_ROOM_CATEGORIES.each do |category|
+  RoomCategory.create(name: category)
 end
