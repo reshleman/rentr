@@ -1,6 +1,7 @@
 class Listing < ActiveRecord::Base
   belongs_to :user
   has_many :available_dates
+  belongs_to :property_category
 
   validates :city, presence: true
   validates :address, presence: true

@@ -8,6 +8,7 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
+    @property_categories = PropertyCategory.all
   end
 
   def create
@@ -25,6 +26,14 @@ class ListingsController < ApplicationController
   def listing_params
     params.
       require(:listing).
-      permit(:city, :address, :price, :title, :description, :accommodates)
+      permit(
+        :city,
+        :address,
+        :price,
+        :title,
+        :description,
+        :accommodates,
+        :property_category_id
+      )
   end
 end
