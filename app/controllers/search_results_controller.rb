@@ -4,6 +4,7 @@ class SearchResultsController < ApplicationController
   def show
     @city = params[:city]
     @price = params[:price]
+    @property_categories = PropertyCategory.all
     @listings = Listing.search(params)
   end
 end
