@@ -8,7 +8,8 @@
   <script src="https://checkout.stripe.com/checkout.js"
     class="stripe-button"
     data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-description="Pay for your Rentr Reservation"
+    data-name="Rentr"
+    data-description="Your Rentr Reservation"
     data-amount="@reservation.listing.price * 100"
     data-email="TEST@reservation.user.email"
   >
