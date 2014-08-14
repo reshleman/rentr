@@ -2,6 +2,6 @@
 
 <ul>
   <% @listings.each do |listing| %>
-    <li><%= link_to listing.title, listing %> <%= number_to_currency(listing.price, precision: 0) %> </li>
+    <li><%= link_to listing.title, listing %> <%= number_to_currency(listing.price, precision: 0) %></li>
   <% end %>
 </ul>
