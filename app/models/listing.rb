@@ -19,9 +19,11 @@ class Listing < ActiveRecord::Base
   end
 
   def reserve(user, date_range)
+    return NullReservation.new if date_range.invalid?
+
     if available_from?(date_range)
       make_unavailable_and_reserve(user, date_range)
-    end
+    end || NullReservation.new
   end
 
   private

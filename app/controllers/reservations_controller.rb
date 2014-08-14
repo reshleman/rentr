@@ -8,10 +8,12 @@ class ReservationsController < ApplicationController
 
   def create
     @listing = find_listing
+    date_range = DateRange.new(reservation_params)
+
     @reservation = @listing.reserve(
       current_user,
-      DateRange.new(reservation_params)
-    ) || NullReservation.new
+      date_range
+    )
 
     if @reservation.id
       redirect_to [@listing, @reservation]
