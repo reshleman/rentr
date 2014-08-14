@@ -19,8 +19,8 @@ class Listing < ActiveRecord::Base
   end
 
   def reserve(user, date_range)
-    if available_from?(date_range)
-      make_unavailable_and_reserve(user, date_range)
+    if available_during?(date_range)
+      book(user, date_range)
     else
       NullReservation.new
     end
@@ -28,23 +28,23 @@ class Listing < ActiveRecord::Base
 
   private
 
-  def available_from?(date_range)
+  def available_during?(date_range)
     count_dates_between(date_range) ==
       count_available_dates_between(date_range)
   end
 
-  def make_unavailable_and_reserve(user, date_range)
+  def book(user, date_range)
     reservation = nil
 
     transaction do
-      make_unavailable_from(date_range)
+      book_during(date_range)
       reservation = create_reservation(user, date_range)
     end
 
     reservation
   end
 
-  def make_unavailable_from(date_range)
+  def book_during(date_range)
     available_date_range(date_range).destroy_all
   end
 

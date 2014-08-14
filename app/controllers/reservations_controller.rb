@@ -18,7 +18,6 @@ class ReservationsController < ApplicationController
       )
     end
 
-
     if dates.valid? && @reservation.id
       redirect_to [@listing, @reservation]
     else
