@@ -1,16 +1,16 @@
 class PhotosController < ApplicationController
   def new
     @photo = Photo.new
-    @listing = Listing.find(params[:listing_id])
+    @listing = find_listing
   end
 
   def create
-    listing = find_listing
-    photo = Photo.new(photo_params)
-    photo.listing = listing
+    @listing = find_listing
+    @photo = Photo.new(photo_params)
+    @photo.listing = @listing
 
-    if photo.save
-      redirect_to listing
+    if @photo.save
+      redirect_to @listing
     else
       flash[:alert] = "Invalid Photo"
       render :new
