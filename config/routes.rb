@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   end
 
   resources :reservations, only: [:index]
+
+  resources :charges, only: [:new, :create]
 end
