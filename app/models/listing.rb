@@ -55,7 +55,7 @@ class Listing < ActiveRecord::Base
   end
 
   def count_dates_between(date_range)
-    date_range.stay.count
+    date_range.count
   end
 
   def count_available_dates_between(date_range)
@@ -66,8 +66,8 @@ class Listing < ActiveRecord::Base
     available_dates.
       where(
         "date BETWEEN ? AND ?",
-        date_range.stay.min,
-        date_range.stay.max
+        date_range.start_date,
+        date_range.end_date - 1
     )
   end
 end

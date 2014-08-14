@@ -6,7 +6,7 @@ class DateRange
     @end_date = date_range[:end_date]
   end
 
-  def stay
-    start_date...end_date
+  def count
+    (start_date...end_date).count
   end
 end
