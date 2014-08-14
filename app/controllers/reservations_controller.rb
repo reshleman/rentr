@@ -8,7 +8,10 @@ class ReservationsController < ApplicationController
 
   def create
     @listing = find_listing
-    date_range = DateRange.new(reservation_params)
+    date_range = DateRange.new(
+      reservation_params[:start_date],
+      reservation_params[:end_date]
+    )
 
     if date_range.start_date && date_range.end_date
       @reservation = @listing.reserve(
