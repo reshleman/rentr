@@ -1,9 +1,9 @@
 class DateRange
   attr_reader :start_date, :end_date
 
-  def initialize(options)
-    @start_date = options[:start_date].to_date
-    @end_date = options[:end_date].to_date
+  def initialize(dates)
+    @start_date = dates[:start_date].to_date
+    @end_date = dates[:end_date].to_date
   end
 
   def count
