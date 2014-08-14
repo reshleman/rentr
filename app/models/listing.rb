@@ -19,6 +19,11 @@ class Listing < ActiveRecord::Base
       result_set = result_set.where("price <= ?", search_params[:price])
     end
 
+    if search_params[:property_category].present?
+      result_set = result_set.
+        where("property_category_id = ?", search_params[:property_category])
+    end
+
     result_set
   end
 

@@ -6,8 +6,12 @@
     <%= search_field_tag :city %>
   </div>
   <div>
-    <%= label_tag :price %>
+    <%= label_tag :max_price %>
     <%= search_field_tag :price %>
+  </div>
+  <div>
+    <%= label_tag :propery_category %>
+    <%= select_tag :property_category, options_from_collection_for_select(@property_categories, :id, :name), include_blank: true %>
   </div>
   <div>
     <%= submit_tag "Search" %>
