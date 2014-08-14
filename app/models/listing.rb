@@ -19,11 +19,11 @@ class Listing < ActiveRecord::Base
   end
 
   def reserve(user, date_range)
-    return NullReservation.new if date_range.invalid?
-
     if available_from?(date_range)
       make_unavailable_and_reserve(user, date_range)
-    end || NullReservation.new
+    else
+      NullReservation.new
+    end
   end
 
   private
@@ -65,11 +65,10 @@ class Listing < ActiveRecord::Base
   end
 
   def available_date_range(date_range)
-    available_dates.
-      where(
-        "date BETWEEN ? AND ?",
-        date_range.start_date,
-        date_range.end_date - 1
+    available_dates.where(
+      "date BETWEEN ? AND ?",
+      date_range.start_date,
+      date_range.end_date - 1
     )
   end
 end
