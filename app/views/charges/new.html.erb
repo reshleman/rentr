@@ -5,8 +5,12 @@
     </label>
   </article>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
-          data-amount="500"></script>
+  <script src="https://checkout.stripe.com/checkout.js"
+    class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-description="Pay for your Rentr Reservation"
+    data-amount="@reservation.listing.price * 100"
+    data-email="TEST@reservation.user.email"
+  >
+  </script>
 <% end %>

@@ -3,20 +3,10 @@ class ChargesController < ApplicationController
   end
 
   def create
-    # Amount in cents
-    @amount = 500
+    reservation = Reservation.find(params[:id])
+    card = params[:stripeToken]
 
-    customer = Stripe::Customer.create(
-      :email => 'example@stripe.com',
-      :card  => params[:stripeToken]
-    )
-
-    charge = Stripe::Charge.create(
-      :customer    => customer.id,
-      :amount      => @amount,
-      :description => 'Rails Stripe customer',
-      :currency    => 'usd'
-    )
+    Transaction.new(reservation, card).pay!
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
