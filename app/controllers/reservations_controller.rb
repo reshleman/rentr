@@ -8,24 +8,8 @@ class ReservationsController < ApplicationController
 
   def create
     @listing = find_listing
-    date_range = DateRange.new(
-      reservation_params[:start_date],
-      reservation_params[:end_date]
-    )
-
-    if date_range.start_date && date_range.end_date
-      @reservation = @listing.reserve(
-        current_user,
-        date_range
-      )
-    end
-
-    if @reservation && @reservation.id
-      redirect_to [@listing, @reservation]
-    else
-      flash[:alert] = "Invalid Reservation Dates"
-      redirect_to @listing
-    end
+    @reservation = handle_create(@listing)
+    handle_redirect(@listing, @reservation)
   end
 
   def show
@@ -37,6 +21,38 @@ class ReservationsController < ApplicationController
   end
 
   private
+
+  def handle_create(listing)
+    if valid_dates?
+      date_range = DateRange.new(start_date, end_date)
+      listing.reserve(current_user, date_range)
+    end
+  end
+
+  def handle_redirect(listing, reservation)
+    if reservation && reservation.id
+      redirect_to [listing, reservation]
+    else
+      handle_create_error(listing)
+    end
+  end
+
+  def handle_create_error(listing)
+    flash[:alert] = "Invalid Reservation Dates"
+    redirect_to listing
+  end
+
+  def start_date
+    reservation_params[:start_date].to_date
+  end
+
+  def end_date
+    reservation_params[:end_date].to_date
+  end
+
+  def valid_dates?
+    start_date.present? && end_date.present?
+  end
 
   def find_reservation
     Reservation.find(params[:id])
