@@ -18,51 +18,56 @@ class Listing < ActiveRecord::Base
     available_dates.new(date).save
   end
 
-  def reserve(user, start_date, end_date)
-    if available_from?(start_date, end_date)
-      make_unavailable_and_reserve(
-        user,
-        start_date,
-        end_date
-      )
+  def reserve(user, date_range)
+    if available_from?(date_range)
+      make_unavailable_and_reserve(user, date_range)
     end
   end
 
   private
 
-  def available_from?(start_date, end_date)
-    count_dates_between(start_date, end_date) ==
-      count_available_dates_between(start_date, end_date)
+  def available_from?(date_range)
+    count_dates_between(date_range) ==
+      count_available_dates_between(date_range)
   end
 
-  def make_unavailable_and_reserve(user, start_date, end_date)
+  def make_unavailable_and_reserve(user, date_range)
     reservation = nil
 
     transaction do
-      make_unavailable_from(start_date, end_date)
-      reservation = create_reservation(user, start_date, end_date)
+      make_unavailable_from(date_range)
+      reservation = create_reservation(user, date_range)
     end
 
     reservation
   end
 
-  def make_unavailable_from(start_date, end_date)
+  def make_unavailable_from(date_range)
+    available_date_range(date_range).destroy_all
+  end
+
+  def create_reservation(user, date_range)
+    reservations.create(
+      user: user,
+      start_date: date_range.start_date,
+      end_date: date_range.end_date
+    )
+  end
+
+  def count_dates_between(date_range)
+    date_range.stay.count
+  end
+
+  def count_available_dates_between(date_range)
+    available_date_range(date_range).count
+  end
+
+  def available_date_range(date_range)
     available_dates.
-      where("date BETWEEN ? AND ?", start_date.to_date, end_date.to_date - 1).
-      destroy_all
-  end
-
-  def create_reservation(user, start_date, end_date)
-    reservations.create(user: user, start_date: start_date, end_date: end_date)
-  end
-
-  def count_dates_between(start_date, end_date)
-    (start_date...end_date).count
-  end
-
-  def count_available_dates_between(start_date, end_date)
-    available_dates.
-      where("date BETWEEN ? AND ?", start_date.to_date, end_date.to_date - 1).
-      count
+      where(
+        "date BETWEEN ? AND ?",
+        date_range.stay.min,
+        date_range.stay.max
+    )
   end
 end

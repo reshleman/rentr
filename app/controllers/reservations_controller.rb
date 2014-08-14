@@ -8,12 +8,12 @@ class ReservationsController < ApplicationController
 
   def create
     @listing = find_listing
-    @reservation = @listing.reserve(current_user,
-                                    reservation_params[:start_date],
-                                    reservation_params[:end_date]
-                                   )
+    @reservation = @listing.reserve(
+      current_user,
+      DateRange.new(reservation_params)
+    ) || NullReservation.new
 
-    if @reservation
+    if @reservation.id
       redirect_to [@listing, @reservation]
     else
       flash[:alert] = "Invalid Reservation Dates"
