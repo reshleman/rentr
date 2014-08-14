@@ -1,0 +1,5 @@
+<h2>
+  Thanks, you paid <strong><%= number_to_currency(@reservation.order.amount_paid) %></strong>!
+</h2>
+
+<%= link_to @reservation.listing_title, @reservation.listing %>

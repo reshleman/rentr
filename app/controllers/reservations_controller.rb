@@ -17,7 +17,7 @@ class ReservationsController < ApplicationController
     end
 
     if @reservation && @reservation.valid?
-      redirect_to [@listing, @reservation]
+      redirect_to @reservation
     else
       flash[:alert] = "Invalid Reservation Dates"
       @reservation = Reservation.new
@@ -27,6 +27,11 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = find_reservation
+
+    if current_user.id != @reservation.user_id
+      flash[:alert] = "Sorry, you can only view reservations made by you."
+      redirect_to @reservation.listing
+    end
   end
 
   def index

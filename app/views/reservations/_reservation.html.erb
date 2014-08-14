@@ -1,5 +1,4 @@
 <%= div_for(reservation) do %>
-  <%= format_date(reservation.start_date) %> to
-  <%= format_date(reservation.end_date) %>
-  <%= link_to reservation.listing.title, reservation.listing %>
+  <%= reservation.listing_title %>:
+  <%= link_to "#{format_date(reservation.start_date)} to #{format_date(reservation.end_date)}", reservation %>
 <% end %>

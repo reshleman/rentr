@@ -1,5 +1,20 @@
-<%= link_to @reservation.listing.title, @reservation.listing %>
+<h2>
+  Your Reservation for <%= @reservation.listing_title %>
+</h2>
+
 <p>
-  <%= format_date(@reservation.start_date) %> to
-  <%= format_date(@reservation.end_date) %>
+  <em>
+    <%= format_date(@reservation.start_date) %> to
+    <%= format_date(@reservation.end_date) %>
+  </em>
+</p>
+
+<% if @reservation.order %>
+  You paid <%= number_to_currency(@reservation.order.amount_paid) %> on <%= format_date(@reservation.order.created_at) %>.
+<% else %>
+  <%= render "payment_form", reservation: @reservation %>
+<% end %>
+
+<p>
+  <%= link_to "Go to Listing", @reservation.listing %>
 </p>

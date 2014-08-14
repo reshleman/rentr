@@ -1,0 +1,18 @@
+<%= form_tag reservation_orders_path(reservation) do %>
+  <article>
+    <label class="amount">
+      <span>Amount: <%= number_to_currency(reservation.total_price) %></span>
+    </label>
+  </article>
+
+  <script
+    src="https://checkout.stripe.com/checkout.js"
+    class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-name="Rentr"
+    data-description="<%= reservation.listing_title %>"
+    data-amount="<%= reservation.price_in_cents %>"
+    data-email="<%= reservation.guest_email %>"
+  >
+  </script>
+<% end %>
