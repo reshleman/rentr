@@ -7,7 +7,7 @@ class SearchResultsController < ApplicationController
     @property_categories = PropertyCategory.all
     @room_categories = RoomCategory.all
     @listings = Listing.search(params)
-    @search = search_query
+    @search_query = search_query
   end
 
   private
