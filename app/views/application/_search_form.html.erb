@@ -14,6 +14,9 @@
     <%= select_tag :property_category, options_from_collection_for_select(@property_categories, :id, :name), include_blank: true %>
   </div>
   <div>
+    <%= label_tag :room_category %>
+    <%= select_tag :room_category, options_from_collection_for_select(@room_categories, :id, :name), include_blank: true %>
+  <div>
     <%= submit_tag "Search" %>
   </div>
 <% end %>

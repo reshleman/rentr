@@ -5,6 +5,7 @@ class SearchResultsController < ApplicationController
     @city = params[:city]
     @price = params[:price]
     @property_categories = PropertyCategory.all
+    @room_categories = RoomCategory.all
     @listings = Listing.search(params)
   end
 end

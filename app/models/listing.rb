@@ -24,6 +24,11 @@ class Listing < ActiveRecord::Base
         where("property_category_id = ?", search_params[:property_category])
     end
 
+    if search_params[:room_category].present?
+      result_set = result_set.
+        where("room_category_id = ?", search_params[:room_category])
+    end
+
     result_set
   end
 
