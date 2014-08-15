@@ -7,9 +7,9 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @listing = find_listing
-    @reservation = handle_create(@listing)
-    handle_redirect(@listing, @reservation)
+    listing = find_listing
+    reservation = handle_create(listing)
+    handle_redirect(listing, reservation)
   end
 
   def show
