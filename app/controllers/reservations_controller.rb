@@ -39,7 +39,9 @@ class ReservationsController < ApplicationController
 
   def handle_create_error(listing)
     flash[:alert] = "Invalid Reservation Dates"
-    redirect_to listing
+    @listing = find_listing
+    @reservation = Reservation.new
+    render :new
   end
 
   def start_date
