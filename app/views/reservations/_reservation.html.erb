@@ -2,4 +2,7 @@
   <%= format_date(reservation.start_date) %> to
   <%= format_date(reservation.end_date) %>
   <%= link_to reservation.listing.title, reservation.listing %>
+  <% unless reservation.review %>
+    <%=  link_to "Add Review", new_listing_reservation_review_path(reservation.listing, reservation) %>
+  <% end %>
 <% end %>
