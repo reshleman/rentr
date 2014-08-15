@@ -32,8 +32,8 @@ class Listing < ActiveRecord::Base
   end
 
   def self.property_category(category)
-    query_if_present(category) do |cat|
-      where("property_category_id = ?", cat)
+    query_if_present(category) do |ct|
+      where("property_category_id = ?", ct)
     end
   end
 
