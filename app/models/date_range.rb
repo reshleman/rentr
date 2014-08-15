@@ -6,7 +6,7 @@ class DateRange
     @end_date = end_date
   end
 
-  def count
+  def days_in_range
     (start_date...end_date).count
   end
 end

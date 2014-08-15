@@ -34,14 +34,10 @@ class Listing < ActiveRecord::Base
   end
 
   def book(user, date_range)
-    reservation = nil
-
     transaction do
       book_during(date_range)
-      reservation = create_reservation(user, date_range)
+      create_reservation(user, date_range)
     end
-
-    reservation
   end
 
   def book_during(date_range)
