@@ -27,6 +27,10 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = find_reservation
+
+    if current_user.id != @reservation.user_id
+      redirect_to @reservation.listing
+    end
   end
 
   def index
