@@ -32,17 +32,17 @@ class Order < ActiveRecord::Base
   end
 
   def update_stripe_customer(card)
-      @stripe_customer = Stripe::Customer.
-        retrieve(reservation.guest_stripe_customer)
-      @stripe_customer.card = card
-      @stripe_customer.save
+    @stripe_customer = Stripe::Customer.
+      retrieve(reservation.guest_stripe_customer)
+    @stripe_customer.card = card
+    @stripe_customer.save
   end
 
   def create_stripe_customer(card)
-      @stripe_customer = Stripe::Customer.create(
-        email: reservation.guest_email,
-        card: card
-      )
-      reservation.user.update(stripe_customer: @stripe_customer.id)
+    @stripe_customer = Stripe::Customer.create(
+      email: reservation.guest_email,
+      card: card
+    )
+    reservation.user.update(stripe_customer: @stripe_customer.id)
   end
 end
