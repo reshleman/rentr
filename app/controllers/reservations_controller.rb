@@ -17,7 +17,7 @@ class ReservationsController < ApplicationController
     end
 
     if @reservation && @reservation.valid?
-      redirect_to [@listing, @reservation]
+      redirect_to @reservation
     else
       flash[:alert] = "Invalid Reservation Dates"
       @reservation = Reservation.new
