@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140813223504) do
+ActiveRecord::Schema.define(version: 20140815153221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20140813223504) do
     t.integer  "property_category_id"
     t.integer  "room_category_id"
   end
+
+  create_table "orders", force: true do |t|
+    t.integer  "reservation_id",   null: false
+    t.string   "stripe_charge_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["reservation_id"], name: "index_orders_on_reservation_id", using: :btree
 
   create_table "photos", force: true do |t|
     t.integer  "listing_id"
@@ -76,10 +85,11 @@ ActiveRecord::Schema.define(version: 20140813223504) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",           null: false
-    t.string   "password_digest", null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "email",              null: false
+    t.string   "password_digest",    null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "stripe_customer_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

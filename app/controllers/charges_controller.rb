@@ -6,7 +6,7 @@ class ChargesController < ApplicationController
     reservation = find_reservation
     card = find_card
 
-    Order.new(reservation, card).pay
+    Order.new(reservation: reservation).pay(card)
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
