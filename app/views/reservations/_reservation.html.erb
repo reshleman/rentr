@@ -1,4 +1,9 @@
 <%= div_for(reservation) do %>
   <%= reservation.listing_title %>:
   <%= link_to "#{format_date(reservation.start_date)} to #{format_date(reservation.end_date)}", reservation %>
+  <%= link_to reservation.listing.title, reservation.listing %>
+
+  <% unless reservation.review %>
+    <%=  link_to "Add Review", new_reservation_review_path(reservation) %>
+  <% end %>
 <% end %>

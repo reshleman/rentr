@@ -1,0 +1,7 @@
+<%= form_for [@listing, @reservation, @review] do |form| %>
+  <div>
+    <%= form.label :body %>
+    <%= form.text_area :body%>
+  </div>
+  <%= form.submit %>
+<% end %>

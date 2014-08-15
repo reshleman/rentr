@@ -23,5 +23,7 @@ Rails.application.routes.draw do
 
   resources :reservations, only: [:show, :index] do
     resources :orders, only: [:create]
+    resources :reviews, only: [:new, :create]
   end
+
 end
