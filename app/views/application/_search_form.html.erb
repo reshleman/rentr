@@ -15,7 +15,7 @@
   </div>
   <div>
     <%= label_tag :accommodates %>
-    <%= select_tag :accommodates, options_for_select(0..99) %>
+    <%= select_tag :accommodates, options_for_select(Listing::SEARCH_RANGE) %>
   </div>
   <div>
     <%= submit_tag "Search" %>

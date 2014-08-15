@@ -12,6 +12,8 @@ class Listing < ActiveRecord::Base
   validates :user, presence: true
   validates :accommodates, presence: true, numericality: { greater_than: 0 }
 
+  SEARCH_RANGE = 0..99
+
   def self.search(search_params)
     result_set = where("city ILIKE ?", "%#{search_params[:city]}%")
 
