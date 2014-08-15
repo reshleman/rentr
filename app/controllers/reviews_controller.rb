@@ -10,8 +10,9 @@ class ReviewsController < ApplicationController
     @listing = find_listing
     @review = Review.new(review_params)
     @review.reservation = @reservation
+
     if @review.save
-      redirect_to [@listing, @reservation, @review]
+      redirect_to @listing
     else
       flash[:alert] = "Invalid Review"
       render :new
