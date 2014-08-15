@@ -13,6 +13,7 @@ class SearchResultsController < ApplicationController
   private
 
   def search_query
-    [params[:city], params[:price], params[:property_categories], params[:room_categories]].join(" ")
+    [params[:city], params[:price], params[:property_categories],
+      params[:room_categories]].join(" ")
   end
 end
