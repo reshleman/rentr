@@ -17,6 +17,8 @@
     <%= label_tag :accommodates %>
     <%= select_tag :accommodates, options_for_select(Listing::SEARCH_RANGE) %>
   </div>
+    <%= label_tag :room_category %>
+    <%= select_tag :room_category, options_from_collection_for_select(@room_categories, :id, :name), include_blank: true %>
   <div>
     <%= submit_tag "Search" %>
   </div>
