@@ -2,7 +2,7 @@
 
 Rentr is a sample [Airbnb](http://www.airbnb.com)-style app for listing and reserving a room, apartment, or house.
 
-This app was written with @nnarh and @charlesmassry as a team project for @thisismetis.
+This app was written by [Robert Eshleman](https://github.com/reshleman), [Nick Narh](https://github.com/nnarh) and [Charlie Massry](https://github.com/CharlesMassry) as a team project for [Metis](https://github.com/thisismetis).
 
 ## Stripe Credentials
 
