@@ -73,7 +73,7 @@ class Listing < ActiveRecord::Base
   end
 
   def count_dates_between(date_range)
-    date_range.count
+    date_range.days_in_range
   end
 
   def count_available_dates_between(date_range)
