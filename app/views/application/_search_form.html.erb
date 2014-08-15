@@ -14,6 +14,10 @@
     <%= select_tag :property_category, options_from_collection_for_select(@property_categories, :id, :name), include_blank: true %>
   </div>
   <div>
+    <%= label_tag :accommodates %>
+    <%= select_tag :accommodates, options_for_select(0..99) %>
+  </div>
+  <div>
     <%= submit_tag "Search" %>
   </div>
 <% end %>

@@ -23,7 +23,10 @@ class Listing < ActiveRecord::Base
       result_set = result_set.
         where("property_category_id = ?", search_params[:property_category])
     end
-
+    if search_params[:accommodates].present?
+      result_set = result_set.
+        where("accommodates <= ?", search_params[:accommodates])
+    end
     result_set
   end
 
